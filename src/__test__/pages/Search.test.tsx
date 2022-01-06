@@ -18,8 +18,8 @@ describe("Search Page/Component", () => {
             </Providers>
         );
 		
-		const buttonElement = screen.getByRole("button");
 		const cep = screen.getByPlaceholderText("Insira o CEP");
+		const buttonElement = screen.getByRole("button");
         
 		fireEvent.change(cep, { target: { value: 66020090 }})
 		fireEvent.click(buttonElement)
@@ -39,14 +39,15 @@ describe("Search Page/Component", () => {
             </Providers>
         );
 
-        const buttonElement = screen.getByRole("button");	
+
 		const cepText = screen.getByPlaceholderText("Insira o CEP");
+        const buttonElement = screen.getByRole("button");	
         
-		fireEvent.change(cepText, { target: { value: 99999998 }})
+		fireEvent.change(cepText, { target: { value: 0 }})
         fireEvent.click(buttonElement)
 		
         await waitFor(() =>{
-            expect(screen.queryByPlaceholderText("Logradouro")).not.toBeInTheDocument()
+            expect(screen.queryByText("Logradouro")).not.toBeInTheDocument()
         })
 
 
